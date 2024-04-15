@@ -1,58 +1,180 @@
 {
-    "Title": "Campus Life on the West Side",
-    "Credits": "Created by Adam Smith (amsmith@ucsc.edu).",
-    "InitialLocation": "Kresge",
+    "Title": "Echoes of the Forgotten",
+    "Credits": "Created by Andrea Castillo (anbcasti@ucsc.edu).",
+    "InitialLocation": "Foyer",
     "Locations": {
-        "Kresge": {
-            "Body": "This is Kresge College, lots of nice trees.",
+        "Foyer": {
+            "Body": "The Foyer: The grand foyer sets the tone with its dusty chandeliers and faded portraits lining the walls.",
             "Choices": [
                 {
-                    "Text": "South",
-                    "Target": "Porter"
-                }
-            ]
-        },
-        "Porter": {
-            "Body": "This is Porter College, the trees are nice here too.",
-            "Choices": [
-                {
-                    "Text": "North",
-                    "Target": "Kresge"
+                    "Text": "Follow the path away from house.",
+                    "Target": "Garden"
                 },
                 {
-                    "Text": "South",
-                    "Target": "Rachel Carson"
+                    "Text": "Go inside the house.",
+                    "Target": "Library"
                 }
             ]
         },
-        "Rachel Carson": {
-            "Body": "Rachel Carson College, more sun and fewer trees.",
+        "Library": {
+            "Body": "The Library: A vast library filled with dusty tomes and creaky shelves.",
             "Choices": [
                 {
-                    "Text": "North",
-                    "Target": "Porter"
+                    "Text": "Go right.",
+                    "Target": "Dining Hall"
                 },
                 {
-                    "Text": "South",
-                    "Target": "Oakes"
+                    "Text": "Go left.",
+                    "Target": "Study"
                 }
             ]
         },
-        "Oakes": {
-            "Body": "Oakes College, even the buildings have tree bark on them.",
+        "Conservatory": {
+            "Body": "The Conservatory: A serene space with overgrown foliage and broken glass panes.",
             "Choices": [
                 {
-                    "Text": "North",
-                    "Target": "Rachel Carson"
+                    "Text": "Take the glass door out.",
+                    "Target": "Garden"
                 },
                 {
-                    "Text": "South",
-                    "Target": "Beyond"
+                    "Text": "Find the key, use the hidden passage.",
+                    "Target": "Attic"
                 }
             ]
         },
-        "Beyond": {
-            "Body": "Grass, don't forget to check for ticks!"
+        "Attic": {
+            "Body": "The Attic: A dimly lit space filled with forgotten belongings.",
+            "Choices": [
+                {
+                    "Text": "Use the dusty shute.",
+                    "Target": "Bedroom"
+                }
+            ]
+        },
+        "Bedroom": {
+            "Body": "The Bedroom: A once opulent bedroom now draped in cobwebs.",
+            "Choices": [
+                {
+                    "Text": "Go downstairs.",
+                    "Target": "Study"
+                }
+            ]
+        },
+        "Study": {
+            "Body": "The Study: A cluttered study with papers strewn across the desk.",
+            "Choices": [
+                {
+                    "Text": "Go upstairs.",
+                    "Target": "Bedroom"
+                },
+                {
+                    "Text": "Go right.",
+                    "Target": "Library"
+                },
+                {
+                    "Text": "Find locket, go in door.",
+                    "Target": "Secret Room"
+                }
+            ]
+        },
+        "Secret Room": {
+            "Body": "The Secret Room: ",
+            "Choices": [
+                {
+                    "Text": "Find secret button, go in door.",
+                    "Target": "End"
+                }
+            ]
+        },
+        "Courtyard": {
+            "Body": "The Courtyard: In the center stands  a mysterious fountain with water that reflects the past",
+            "Choices": [
+                {
+                    "Text": "Take road back.",
+                    "Target": "Garden"
+                },
+                {
+                    "Text": "Take pebble path out.",
+                    "Target": "Chapel"
+                },
+                {
+                    "Text": "Find button, take hidden door in.",
+                    "Target": "Basement"
+                }
+            ]
+        },
+        "Basement": {
+            "Body": "The Basement: A final revelation, unraveling the tragic fate of the mansion's former inhabitants.",
+            "Choices": [
+                {
+                    "Text": "Take hidden door out.",
+                    "Target": "Courtyard"
+                }
+            ]
+        },
+        "Kitchen": {
+            "Body": "The Kitchen: Decrepit and dim. Curious foods laid out.",
+            "Choices": [
+                {
+                    "Text": "Go left.",
+                    "Target": "Dining Hall"
+                },
+                {
+                    "Text": "Go downstairs.",
+                    "Target": "Cellar"
+                }
+            ]
+        },
+        "Dining Hall": {
+            "Body": "The Dining Hall: A grand hall where echoes of past conversations linger.",
+            "Choices": [
+                {
+                    "Text": "Go left.",
+                    "Target": "Library"
+                },
+                {
+                    "Text": "Go right.",
+                    "Target": "Kitchen"
+                }
+            ]
+        },
+        "Garden": {
+            "Body": "The Garden: Overgrown and wild, the garden harbors hidden pathways and forgotten statues.",
+            "Choices": [
+                {
+                    "Text": "Take glass door in.",
+                    "Target": "Conservatory"
+                },
+                {
+                    "Text": "Follow path back.",
+                    "Target": "Foyer"
+                },
+                {
+                    "Text": "Take road further.",
+                    "Target": "Courtyard"
+                }
+            ]
+        },
+        "Cellar": {
+            "Body": "The Cellar: Dark and foreboding, the cellar holds secrets best left undisturbed.",
+            "Choices": [
+                {
+                    "Text": "Go upstairs.",
+                    "Target": "Kitchen"
+                }
+            ]
+        },
+        "Chapel": {
+            "Body": "The Chapel: A solemn chapel where players confront the echoes of the past.",
+            "Choices": [
+                {
+                    "Text": "Take pebble path back.",
+                    "Target": "Courtyard"
+                }
+            ]
+        },
+        "End": {
+            "Body": "The End:"
         }
     }
 }
