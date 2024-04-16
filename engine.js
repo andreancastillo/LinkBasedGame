@@ -31,6 +31,8 @@ class Engine {
     addChoice(action, data) {
         let button = this.actionsContainer.appendChild(document.createElement("button"));
         button.innerText = action;
+        //button.style.backgroundColor = "";
+        button.style.color = "royalblue";
         button.onclick = () => {
             while(this.actionsContainer.firstChild) {
                 this.actionsContainer.removeChild(this.actionsContainer.firstChild)

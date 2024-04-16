@@ -4,7 +4,7 @@
     "InitialLocation": "Foyer",
     "Locations": {
         "Foyer": {
-            "Body": "The Foyer: The grand foyer sets the tone with its dusty chandeliers and faded portraits lining the walls.",
+            "Body": "<br>The Foyer: The grand foyer sets the tone with its dusty chandeliers and faded portraits lining the walls.",
             "Choices": [
                 {
                     "Text": "Follow the path away from house.",
@@ -17,8 +17,12 @@
             ]
         },
         "Library": {
-            "Body": "The Library: A vast library filled with dusty tomes and creaky shelves.",
+            "Body": "<br>The Library: A vast library filled with dusty tomes and creaky shelves.<br>These books haven't been touched in ages.",
             "Choices": [
+                {
+                    "Text": "Go outside the house.",
+                    "Target": "Foyer"
+                },
                 {
                     "Text": "Go right.",
                     "Target": "Dining Hall"
@@ -27,23 +31,22 @@
                     "Text": "Go left.",
                     "Target": "Study"
                 }
-            ]
+            ],
+            "LibraryMechanism":true
         },
         "Conservatory": {
-            "Body": "The Conservatory: A serene space with overgrown foliage and broken glass panes.",
+            "Body": "<br>The Conservatory: A serene space with overgrown foliage and broken glass panes.",
             "Choices": [
                 {
                     "Text": "Take the glass door out.",
                     "Target": "Garden"
-                },
-                {
-                    "Text": "Find the key, use the hidden passage.",
-                    "Target": "Attic"
                 }
-            ]
+            ],
+            "ConservatoryMechanism": true,
+            "BlockedConv": true
         },
         "Attic": {
-            "Body": "The Attic: A dimly lit space filled with forgotten belongings.",
+            "Body": "<br>The Attic: A dimly lit space filled with forgotten belongings.",
             "Choices": [
                 {
                     "Text": "Use the dusty shute.",
@@ -52,68 +55,37 @@
             ]
         },
         "Bedroom": {
-            "Body": "The Bedroom: A once opulent bedroom now draped in cobwebs.",
+            "Body": "<br>The Bedroom: A once opulent bedroom now draped in cobwebs.<br>Toys still line wall by the bed.<br>Must have been a child's room.",
             "Choices": [
                 {
                     "Text": "Go downstairs.",
                     "Target": "Study"
                 }
-            ]
+            ],
+            "BedroomMechanism": true
         },
         "Study": {
-            "Body": "The Study: A cluttered study with papers strewn across the desk.",
+            "Body": "<br>The Study: A cluttered study with papers strewn across the desk.",
             "Choices": [
-                {
-                    "Text": "Go upstairs.",
-                    "Target": "Bedroom"
-                },
                 {
                     "Text": "Go right.",
                     "Target": "Library"
-                },
-                {
-                    "Text": "Find locket, go in door.",
-                    "Target": "Secret Room"
                 }
-            ]
+            ],
+            "StudyMechanism": true,
+            "BlockedStudy": true
         },
         "Secret Room": {
-            "Body": "The Secret Room: ",
+            "Body": "<br>The Secret Room: Hidden within the depths of a sprawling, centuries-old mansion lies a secret room, its existence known to only a select few.<br>Accessed through a concealed passage concealed behind a bookcase or beneath a stairwell, the room is a forgotten sanctuary frozen in time.<br>Its walls, adorned with faded tapestries and portraits, bear witness to the passage of ages,<br>while cobwebs cling to forgotten treasures and dust dances in the dim light filtering through stained glass windows.<br>Within this clandestine chamber, whispers of intrigue and mystery linger, hinting at the secrets that lie buried beneath layers of history.",
             "Choices": [
                 {
-                    "Text": "Find secret button, go in door.",
+                    "Text": "Play the tape recorder on the table.",
                     "Target": "End"
                 }
             ]
         },
-        "Courtyard": {
-            "Body": "The Courtyard: In the center stands  a mysterious fountain with water that reflects the past",
-            "Choices": [
-                {
-                    "Text": "Take road back.",
-                    "Target": "Garden"
-                },
-                {
-                    "Text": "Take pebble path out.",
-                    "Target": "Chapel"
-                },
-                {
-                    "Text": "Find button, take hidden door in.",
-                    "Target": "Basement"
-                }
-            ]
-        },
-        "Basement": {
-            "Body": "The Basement: A final revelation, unraveling the tragic fate of the mansion's former inhabitants.",
-            "Choices": [
-                {
-                    "Text": "Take hidden door out.",
-                    "Target": "Courtyard"
-                }
-            ]
-        },
         "Kitchen": {
-            "Body": "The Kitchen: Decrepit and dim. Curious foods laid out.",
+            "Body": "<br>The Kitchen: Decrepit and dim. Curious foods laid out.",
             "Choices": [
                 {
                     "Text": "Go left.",
@@ -126,20 +98,20 @@
             ]
         },
         "Dining Hall": {
-            "Body": "The Dining Hall: A grand hall where echoes of past conversations linger.",
+            "Body": "<br>The Dining Hall: A grand hall where echoes of past conversations linger.",
             "Choices": [
-                {
-                    "Text": "Go left.",
-                    "Target": "Library"
-                },
                 {
                     "Text": "Go right.",
                     "Target": "Kitchen"
+                },
+                {
+                    "Text": "Go left.",
+                    "Target": "Library"
                 }
             ]
         },
         "Garden": {
-            "Body": "The Garden: Overgrown and wild, the garden harbors hidden pathways and forgotten statues.",
+            "Body": "<br>The Garden: Overgrown and wild, the garden harbors hidden pathways and forgotten statues.",
             "Choices": [
                 {
                     "Text": "Take glass door in.",
@@ -148,15 +120,11 @@
                 {
                     "Text": "Follow path back.",
                     "Target": "Foyer"
-                },
-                {
-                    "Text": "Take road further.",
-                    "Target": "Courtyard"
                 }
             ]
         },
         "Cellar": {
-            "Body": "The Cellar: Dark and foreboding, the cellar holds secrets best left undisturbed.",
+            "Body": "<br>The Cellar: Dark and foreboding, the cellar holds secrets best left undisturbed.",
             "Choices": [
                 {
                     "Text": "Go upstairs.",
@@ -164,17 +132,8 @@
                 }
             ]
         },
-        "Chapel": {
-            "Body": "The Chapel: A solemn chapel where players confront the echoes of the past.",
-            "Choices": [
-                {
-                    "Text": "Take pebble path back.",
-                    "Target": "Courtyard"
-                }
-            ]
-        },
         "End": {
-            "Body": "The End:"
+            "Body": "A voice starts:<br><br>As I record this, the weight of sorrow hangs heavy upon my heart, for I recount the tale of our<br>beloved family mansion, now abandoned and left to decay. Once, these halls echoed with laughter<br>and the warmth of kinship, but now they stand silent, haunted by the ghosts of our past. It was not<br>a single tragedy that led to our departure, but a culmination of misfortunes: financial ruin,<br>whispered scandals, and the untimely loss of loved ones. Each brick, each shuttered window bears<br>witness to the gradual unraveling of our once-glorious estate. And so, with heavy hearts and tear-<br>stained memories, we bid farewell to the place we once called home, leaving it to crumble into the<br>annals of time."
         }
     }
 }
