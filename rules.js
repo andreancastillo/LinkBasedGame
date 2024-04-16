@@ -30,19 +30,33 @@ class Start extends Scene {
 }
 
 var blocked_link_conv = true;
+var blocked_link_hall = true;
 var blocked_link_study = true;
 
 class Location extends Scene {
     create(key) {
-        //console.log("Location");
-        //console.log(this.engine.storyData.Locations[key])
+
         let locationData = this.engine.storyData.Locations[key]; // TODO: use `key` to get the data object for the current story location
         this.engine.show(locationData.Body); // TODO: replace this text by the Body of the location data
         
         if('ConservatoryMechanism' in locationData) {
             if('BlockedConv' in locationData) {
-                if (blocked_link_conv === false) {
+                if (blocked_link_conv === false && blocked_link_study === false) {
+                    this.engine.gotoScene(Conservatory2);
+                }
+                else{
                     this.engine.gotoScene(Conservatory);
+                }
+            }
+        }
+
+        if('GrandHallMechanism' in locationData) {
+            if('BlockedHall' in locationData) {
+                if (blocked_link_hall === false) {
+                    this.engine.gotoScene(GrandHall2);
+                }
+                else {
+                    this.engine.gotoScene(GrandHall);
                 }
             }
         }
@@ -86,21 +100,35 @@ class Location extends Scene {
     }
 }
 
-class Conservatory extends Location {
+class GrandHall extends Location {
     create() {
-        this.engine.addChoice("Observe the area.", { action: "look_around" });
+        this.engine.addChoice("Check out the paintings.", { action: "check_paintings" });
     }
 
     handleChoice(choice) {
-        if (choice.action === "look_around") {
-            this.engine.show("You spot an odd marking on the ground where a plant pot used to be.");
-            this.engine.addChoice("Put a pot back into the spot.", { action: "place_plant" });
-            this.engine.addChoice("Look around some more.", {action: "look"});
-        } else if (choice.action === "look") {
-            this.engine.gotoScene(Location, "Conservatory");
-        } else if (choice.action === "place_plant") {
-            this.engine.show("The ground begins to shift as the pot sinks into the ground.<br>It was a button, revealing a hidden passage.<br>You take it, ending up in...");
-            this.engine.gotoScene(Location, "Attic");
+        if (choice.action === "check_paintings") {
+            this.engine.show("Painting #1: Blue flower vase, red roses.<br>Painting #2: A Mansion stood against a misty backdrop.<br>Painting #3: Portait of a young girl carrying a dog.");
+            this.engine.addChoice("Painting #1", { action: "one" });
+            this.engine.addChoice("Painting #2", {action: "two"});
+            this.engine.addChoice("Painting #3", {action: "three"});
+        } else if (choice.action === "one") {
+            this.engine.show("Pretty. Someone here must like gardening.");
+            this.engine.addChoice("Move the painting.", {action: "move1"});
+        } else if (choice.action === "move1") {
+                this.engine.show("Hmmm. You find that it doesn't budge.<br>Pretty strong for something old.");
+                this.engine.gotoScene(Location, "Grand Hall");
+        } else if (choice.action === "two") {
+            this.engine.show("You think this must be the house you are currently in.<br>The eeriness of the art doesn't make you feel any better.");
+            this.engine.addChoice("Move the painting.", {action: "move2"});
+        } else if (choice.action === "move2") {
+            this.engine.show("You reveal scratches on the wall. They must have been hiding it for a reason.");
+            this.engine.gotoScene(Location, "Grand Hall");
+        } else if (choice.action === "three") {
+            this.engine.show("<br>You suspect this was probably the daughter of the previous owners of the house.<br>The picture is worn...this house must be old.<br>The walls are scratched up next to it.");
+            this.engine.addChoice("Move the painting.", {action: "move3"});
+        } else if (choice.action === "move3") {
+            this.engine.show("What's this? It looks like a keyhole of some sort.<br>If only you had the key.");
+            this.engine.gotoScene(Location, "Grand Hall");
         } else if(choice) {
             this.engine.show("&gt; "+choice.Text);
             this.engine.gotoScene(Location, choice.Target);
@@ -108,7 +136,50 @@ class Conservatory extends Location {
             this.engine.gotoScene(End);
         }
     }
-}
+} 
+
+class GrandHall2 extends Location {
+    create() {
+        this.engine.addChoice("Check out the paintings.", { action: "check_paintings" });
+    }
+
+    handleChoice(choice) {
+        if (choice.action === "check_paintings") {
+            this.engine.show("Painting #1: Blue flower vase, red roses.<br>Painting #2: A Mansion stood against a misty backdrop.<br>Painting #3: Portait of a young girl carrying a dog.");
+            this.engine.addChoice("Painting #1", { action: "one" });
+            this.engine.addChoice("Painting #2", {action: "two"});
+            this.engine.addChoice("Painting #3", {action: "three"});
+        } else if (choice.action === "one") {
+            this.engine.show("Pretty. Someone here must like gardening.");
+            this.engine.addChoice("Move the painting.", {action: "move1"});
+        } else if (choice.action === "move1") {
+                this.engine.show("Hmmm. You find that it doesn't budge.<br>Pretty strong from something old.");
+                this.engine.gotoScene(Location, "Grand Hall");
+        } else if (choice.action === "two") {
+            this.engine.show("You think this must be the house you are currently in.<br>The eeriness of the art doesn't make you feel any better.");
+            this.engine.addChoice("Move the painting.", {action: "move2"});
+        } else if (choice.action === "move2") {
+            this.engine.show("You reveal scratches on the wall. They must have been hiding it for a reason.");
+            this.engine.gotoScene(Location, "Grand Hall");
+        } else if (choice.action === "three") {
+            this.engine.show("<br>You suspect this was probably the daughter of the previous owners of the house.<br>The picture is worn...this house must be old.<br>The walls are scratched up next to it.");
+            this.engine.addChoice("Move the painting.", {action: "move3"});
+        } else if (choice.action === "move3") {
+            this.engine.show("Oh! Maybe you can use that key here?");
+            this.engine.addChoice("Use key.", {action: "key"});
+        } else if (choice.action === "key") {
+            this.engine.show("A door is revealed nearby.");
+            this.engine.addChoice("Go in.", {action: "reveal"});
+        } else if (choice.action === "reveal") {
+            this.engine.gotoScene(Location, "Secret Room");
+        } else if(choice) {
+            this.engine.show("&gt; "+choice.Text);
+            this.engine.gotoScene(Location, choice.Target);
+        } else {
+            this.engine.gotoScene(End);
+        }
+    }
+} 
 
 class Library extends Location {
     create() {
@@ -126,6 +197,111 @@ class Library extends Location {
             this.engine.gotoScene(Location, "Library");
         } else if (choice.action === "waste") {
             this.engine.gotoScene(Location, "Library");
+        } else if(choice) {
+            this.engine.show("&gt; "+choice.Text);
+            this.engine.gotoScene(Location, choice.Target);
+        } else {
+            this.engine.gotoScene(End);
+        }
+    }
+} 
+
+class Conservatory extends Location {
+    create() {
+        this.engine.addChoice("Observe the area.", { action: "look_around" });
+    }
+
+    handleChoice(choice) {
+        if (choice.action === "look_around") {
+            blocked_link_study = false;
+            this.engine.show("The thickness of the plants make it impossible to go through.<br>Only if you had something sharp.");
+            this.engine.gotoScene(Location, "Conservatory");
+        } else if(choice) {
+            this.engine.show("&gt; "+choice.Text);
+            this.engine.gotoScene(Location, choice.Target);
+        } else {
+            this.engine.gotoScene(End);
+        }
+    }
+}
+
+class Conservatory2 extends Location {
+    create() {
+        this.engine.addChoice("Observe the area.", { action: "look_around" });
+    }
+
+    handleChoice(choice) {
+        if (choice.action === "look_around") {
+            this.engine.show("You successfully cut through.<br>You spot an odd marking on the ground where a plant pot used to be.");
+            this.engine.addChoice("Put a pot back into the spot.", { action: "place_plant" });
+            this.engine.addChoice("Look around some more.", {action: "look"});
+        } else if (choice.action === "look") {
+            this.engine.gotoScene(Location, "Conservatory");
+        } else if (choice.action === "place_plant") {
+            this.engine.show("The ground begins to shift as the pot sinks into the ground.<br>It was a button, revealing a hidden passage.<br>You take it, ending up in...");
+            this.engine.gotoScene(Location, "Attic");
+        } else if(choice) {
+            this.engine.show("&gt; "+choice.Text);
+            this.engine.gotoScene(Location, choice.Target);
+        } else {
+            this.engine.gotoScene(End);
+        }
+    }
+}
+
+
+class Study extends Location {
+    create() {
+        this.engine.addChoice("Look around at the weapons.", { action: "look" });
+    }
+
+    handleChoice(choice) {
+        if (choice.action === "look") {
+            this.engine.show("Weapon #1: Hunting Rifle<br>Weapon #2: Hatchet<br>Weapon #3: Bow and Arrow");
+            this.engine.addChoice("Weapon #1", { action: "hunt_one" });
+            this.engine.addChoice("Weapon #2", {action: "hunt_two"});
+            this.engine.addChoice("Weapon #3", {action: "hunt_three"});
+        } else if (choice.action === "hunt_one") {
+            this.engine.show("The model seems expensive. Whoever owned that rifle really valued it.");
+            this.engine.gotoScene(Location, "Study");
+        } else if (choice.action === "hunt_two") {
+            this.engine.show("The forging and detailing of the hatchet is articulate and percise.<br>This would easily cut through anything.");
+            this.engine.gotoScene(Location, "Study");
+        } else if (choice.action === "hunt_three") {
+            this.engine.show("It seems to be collecting dust, just like the rest of the room. Unused.");
+            this.engine.gotoScene(Location, "Study");
+        } else if(choice) {
+            this.engine.show("&gt; "+choice.Text);
+            this.engine.gotoScene(Location, choice.Target);
+        } else {
+            this.engine.gotoScene(End);
+        }
+    }
+} 
+
+class Study2 extends Location {
+    create() {
+        this.engine.addChoice("Look around at the weapons.", { action: "look" });
+    }
+
+    handleChoice(choice) {
+        if (choice.action === "look") {
+            this.engine.show("Weapon #1: Hunting Rifle<br>Weapon #2: Hatchet<br>Weapon #3: Bow and Arrow");
+            this.engine.addChoice("Weapon #1", { action: "hunt_one" });
+            this.engine.addChoice("Weapon #2", {action: "hunt_two"});
+            this.engine.addChoice("Weapon #3", {action: "hunt_three"});
+        } else if (choice.action === "hunt_one") {
+            this.engine.show("The model seems expensive. Whoever owned that rifle really valued it.");
+            this.engine.gotoScene(Location, "Study");
+        } else if (choice.action === "hunt_two") {
+            this.engine.show("The forging and detailing of the hatchet is articulate and percise.<br>This would easily cut through anything.");
+            this.engine.addChoice("Take it. It may be useful.", {action: "take"})
+        } else if (choice.action === "take") {
+            blocked_link_conv = false;
+            this.engine.gotoScene(Location, "Study");
+        } else if (choice.action === "hunt_three") {
+            this.engine.show("It seems to be collecting dust, just like the rest of the room. Unused.");
+            this.engine.gotoScene(Location, "Study");
         } else if(choice) {
             this.engine.show("&gt; "+choice.Text);
             this.engine.gotoScene(Location, choice.Target);
@@ -156,8 +332,8 @@ class Bedroom extends Location {
             this.engine.show("This looks like actual china.<br>A set like this would be an amazing antique find.");
             this.engine.addChoice("Look at the collar.", {action: "collar"});
         } else if (choice.action === "collar") {
-            blocked_link_study = false;
-            this.engine.show("Looking closer it just looks like a pretty locket.<br>Maybe its worth something?<br>You should keep it.");
+            blocked_link_hall = false;
+            this.engine.show("There's a key attached to it.<br>Take it, it may prove to be useful.");
             this.engine.gotoScene(Location, "Bedroom")
         } else if(choice) {
             this.engine.show("&gt; "+choice.Text);
@@ -167,72 +343,6 @@ class Bedroom extends Location {
         }
     }
 }
-
-class Study extends Location {
-    create() {
-        this.engine.addChoice("Check out the paintings.", { action: "check_paintings" });
-    }
-
-    handleChoice(choice) {
-        if (choice.action === "check_paintings") {
-            this.engine.show("Painting #1: Portait of a young girl carrying a dog.<br>Painting #2: A Mansion stood against a misty backdrop.<br>Painting #3: Blue flower vase, red roses.");
-            this.engine.addChoice("Painting #1", { action: "one" });
-            this.engine.addChoice("Painting #2", {action: "two"});
-            this.engine.addChoice("Painting #3", {action: "three"});
-        } else if (choice.action === "one") {
-            this.engine.show("<br>You suspect this was probably the daughter of the previous owners of the house.<br>The picture is worn...this house must be old.<br>The walls are scratched up next to it.");
-            this.engine.gotoScene(Location, "Study");
-        } else if (choice.action === "two") {
-            this.engine.show("You think this must be the house you are currently in.<br>The eeriness of the art doesn't make you feel any better.");
-            this.engine.gotoScene(Location, "Study");
-        } else if (choice.action === "three") {
-            this.engine.show("Pretty. Someone here must like gardening.");
-            this.engine.gotoScene(Location, "Study");
-        } else if(choice) {
-            this.engine.show("&gt; "+choice.Text);
-            this.engine.gotoScene(Location, choice.Target);
-        } else {
-            this.engine.gotoScene(End);
-        }
-    }
-} 
-
-class Study2 extends Location {
-    create() {
-        this.engine.addChoice("Check out the paintings.", { action: "check_paintings" });
-    }
-
-    handleChoice(choice) {
-        if (choice.action === "check_paintings") {
-            this.engine.show("Painting #1: Portait of a young girl carrying a dog.<br>Painting #2: A Mansion stood against a misty backdrop.<br>Painting #3: Blue flower vase, red roses.");
-            this.engine.addChoice("Painting #1", { action: "one" });
-            this.engine.addChoice("Painting #2", {action: "two"});
-            this.engine.addChoice("Painting #3", {action: "three"});
-        } else if (choice.action === "one") {
-            this.engine.show("You suspect this was probably the daughter of the previous owners of the house.<br>The picture is worn...this house must be old.<br>The walls are scratched up next to it.");
-            this.engine.addChoice("Move the painting.", {action: "move"});
-        } else if (choice.action === "two") {
-            this.engine.show("You think this must be the house you are currently in.<br>The eeriness of the art doesn't make you feel any better.");
-            this.engine.gotoScene(Location, "Study");
-        } else if (choice.action === "three") {
-            this.engine.show("Pretty. Someone here must like gardening.");
-            this.engine.gotoScene(Location, "Study");
-        } else if (choice.action === "move") {
-            this.engine.show("What's this? It looks like something should fit into the hole.<br>Maybe a key?");
-            this.engine.addChoice("Use the locket.", {action: "locket"});
-        } else if (choice.action === "locket") {
-            this.engine.show("<br>A door in the wall is revealed.");
-            this.engine.addChoice("Go in.", {action: "reveal"});
-        } else if (choice.action === "reveal") {
-            this.engine.gotoScene(Location, "Secret Room");
-        } else if(choice) {
-            this.engine.show("&gt; "+choice.Text);
-            this.engine.gotoScene(Location, choice.Target);
-        } else {
-            this.engine.gotoScene(End);
-        }
-    }
-} 
 
 class End extends Scene {
     create() {

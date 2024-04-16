@@ -12,9 +12,24 @@
                 },
                 {
                     "Text": "Go inside the house.",
-                    "Target": "Library"
+                    "Target": "Grand Hall"
                 }
             ]
+        },
+        "Grand Hall": {
+            "Body": "<br>The Grand Hall: Main enterance of the house.<br>Lined with paintings, filled with history.",
+            "Choices": [
+                {
+                    "Text": "Go left.",
+                    "Target": "Library"
+                },
+                {
+                    "Text": "Go right.",
+                    "Target": "Dining Hall"
+                }
+            ],
+            "GrandHallMechanism": true,
+            "BlockedHall": true
         },
         "Library": {
             "Body": "<br>The Library: A vast library filled with dusty tomes and creaky shelves.<br>These books haven't been touched in ages.",
@@ -24,15 +39,26 @@
                     "Target": "Foyer"
                 },
                 {
-                    "Text": "Go right.",
-                    "Target": "Dining Hall"
-                },
-                {
                     "Text": "Go left.",
                     "Target": "Study"
+                },
+                {
+                    "Text": "Go right.",
+                    "Target": "Grand Hall"
                 }
             ],
             "LibraryMechanism":true
+        },
+        "Study": {
+            "Body": "<br>The Study: A cluttered study with papers strewn across the desk.<br>Hunting weapons displayed all around the walls.",
+            "Choices": [
+                {
+                    "Text": "Go right.",
+                    "Target": "Library"
+                }
+            ],
+            "StudyMechanism": true,
+            "BlockedStudy": true
         },
         "Conservatory": {
             "Body": "<br>The Conservatory: A serene space with overgrown foliage and broken glass panes.",
@@ -64,17 +90,6 @@
             ],
             "BedroomMechanism": true
         },
-        "Study": {
-            "Body": "<br>The Study: A cluttered study with papers strewn across the desk.",
-            "Choices": [
-                {
-                    "Text": "Go right.",
-                    "Target": "Library"
-                }
-            ],
-            "StudyMechanism": true,
-            "BlockedStudy": true
-        },
         "Secret Room": {
             "Body": "<br>The Secret Room: Hidden within the depths of a sprawling, centuries-old mansion lies a secret room, its existence known to only a select few.<br>Accessed through a concealed passage concealed behind a bookcase or beneath a stairwell, the room is a forgotten sanctuary frozen in time.<br>Its walls, adorned with faded tapestries and portraits, bear witness to the passage of ages,<br>while cobwebs cling to forgotten treasures and dust dances in the dim light filtering through stained glass windows.<br>Within this clandestine chamber, whispers of intrigue and mystery linger, hinting at the secrets that lie buried beneath layers of history.",
             "Choices": [
@@ -101,12 +116,12 @@
             "Body": "<br>The Dining Hall: A grand hall where echoes of past conversations linger.",
             "Choices": [
                 {
-                    "Text": "Go right.",
-                    "Target": "Kitchen"
-                },
-                {
                     "Text": "Go left.",
                     "Target": "Library"
+                },
+                {
+                    "Text": "Go right.",
+                    "Target": "Kitchen"
                 }
             ]
         },
