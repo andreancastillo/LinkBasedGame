@@ -26,6 +26,10 @@
                 {
                     "Text": "Go right.",
                     "Target": "Dining Hall"
+                },
+                {
+                    "Text": "Go outside the house.",
+                    "Target": "Foyer"
                 }
             ],
             "GrandHallMechanism": true,
@@ -34,10 +38,6 @@
         "Library": {
             "Body": "<br>The Library: A vast library filled with dusty tomes and creaky shelves.<br>These books haven't been touched in ages.",
             "Choices": [
-                {
-                    "Text": "Go outside the house.",
-                    "Target": "Foyer"
-                },
                 {
                     "Text": "Go left.",
                     "Target": "Study"
