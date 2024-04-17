@@ -81,7 +81,7 @@
             ]
         },
         "Bedroom": {
-            "Body": "<br>The Bedroom: A once opulent bedroom now draped in cobwebs.<br>Toys still line wall by the bed.<br>Must have been a child's room.",
+            "Body": "<br>The Bedroom: A once opulent bedroom now draped in cobwebs.<br>Toys still line the wall by the bed.<br>Must have been a child's room.",
             "Choices": [
                 {
                     "Text": "Go downstairs.",
